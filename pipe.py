@@ -8,9 +8,10 @@ class Pipe:
     def update(increment):
         self.x += increment
 
-    def doesCollide(x,y):
+    def doesCollide(self, x, y, gap):
         if ((x > self.x and x < self.x + self.width) and 
-           (y > self.y and y < self.y + self.height)):
+           ((y > self.y and y < self.y + self.height) or
+           (y > 0 and y < self.y - gap))):
                return True
 
         return False
