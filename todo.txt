@@ -1,0 +1,4 @@
+1) Create pipe systems
+2) Add ball logic
+3) Add collision logic
+4) Create genetic algorithm 
