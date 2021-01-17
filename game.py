@@ -1,20 +1,20 @@
 import sys, pygame, random
 from pipe import Pipe
 from ball import Ball
-
 FPS = 60 
 SCREEN_WIDTH = 500
 SCREEN_HEIGHT = 500
 SIZE = SCREEN_WIDTH, SCREEN_HEIGHT
-GAP = 100
+GAP = 50
 PIPE_WIDTH = 50
 DISTANCE_BETWEEN_PIPES = 300
 PERSISTENT_X = SCREEN_WIDTH/4
 PIPELINE = []
 PIPELINE_SIZE = 3
-GRAVITY = 0.18
+GRAVITY = 0.25
 ROLL_RATE = 2
-BOUNCE = 5
+BOUNCE = 6
+BALL_RADIUS = 10
 USER_SCORE = 0 
 WHITE = (255, 255, 255)
 
@@ -42,6 +42,8 @@ def generateInitialPipeline(pipeline, pipeline_size):
 def drawPipes(pipeline):
     for pipe in pipeline:
         pygame.draw.rect(screen, WHITE, (pipe.x, pipe.y, pipe.width, pipe.height))
+        pygame.draw.line(screen, WHITE, (pipe.x - 10, pipe.y), (pipe.x + pipe.width + 10, pipe.y))
+        pygame.draw.line(screen, WHITE, (pipe.x - 10, pipe.y - GAP), (pipe.x + pipe.width + 10, pipe.y - GAP))
         lower_pipe_height = SCREEN_HEIGHT - pipe.height - GAP
         pygame.draw.rect(screen, WHITE, (pipe.x, 0, pipe.width, lower_pipe_height))
 
@@ -58,11 +60,11 @@ def updatePipeline(pipeline):
         print(USER_SCORE)
 
 def drawBall(ball):
-    pygame.draw.circle(screen, WHITE, (ball.x, ball.y), 5)
+    pygame.draw.circle(screen, WHITE, (ball.x, ball.y), BALL_RADIUS)
 
 def checkCollision(pipeline, ball):
     for pipe in pipeline:
-        if pipe.doesCollide(ball.x, ball.y, GAP):
+        if pipe.doesCollide(ball.x, ball.y, GAP, BALL_RADIUS):
             return True
     if (ball.y < 0 or ball.y > SCREEN_HEIGHT):
         return True

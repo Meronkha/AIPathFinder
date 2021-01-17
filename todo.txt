@@ -1,4 +1,18 @@
-1) Create pipe systems
-2) Add ball logic
-3) Add collision logic
-4) Create genetic algorithm 
+Create genetic algorithm:
+
+1) Population which is randomised
+2) Evlauate the fitness of the population
+3) Select population members for mating
+4) Crossover population
+5) Randomly mutate child node
+6) Add to next generation
+
+Fitness Function:
+*Needs to be the element that scores the highest
+*Any other parameters to add?
+
+Population:
+*Have parameters associated with their respective vector from midpoint of pipe
+*Sigmoid-esque activation
+
+ 
